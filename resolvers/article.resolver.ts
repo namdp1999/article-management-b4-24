@@ -10,7 +10,8 @@ export const resolversArticle = {
         limitItems = 2, 
         page = 1,
         filterKey,
-        filterValue
+        filterValue,
+        keyword
       } = args;
 
       // Bộ Lọc
@@ -22,6 +23,13 @@ export const resolversArticle = {
         find[filterKey] = filterValue;
       }
       // Hết Bộ Lọc
+
+      // Tìm kiếm
+      if(keyword) {
+        const regex = new RegExp(keyword, "i");
+        find["title"] = regex;
+      }
+      // Hết Tìm kiếm
 
       // Sắp xếp
       const sort = {};
